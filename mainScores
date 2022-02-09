@@ -1,0 +1,110 @@
+/*Author: Stephanie Livengood
+Class: CSCI201
+Date last updated: Sept. 11, 2021
+Purpose: Get 16 quiz scores, find highest lowest, average of these scores, and then print a summary for all quizzes*/
+
+#include <iostream>
+using namespace std;
+#include <string>
+#include <vector>
+
+//custom template class to get scores from user for the 16 quizzes
+template <class customType>
+customType getData(customType scores[15]) {
+  
+  for(int i =0; i<16; i++) {
+    cout<<"Enter grade "<< i+1<<": ";
+    cin>>scores[i];
+  }
+  return scores[15];
+  
+}
+
+//find the highest score
+template <class customType>
+customType highScore(customType scores[]) {
+
+//max will hold the max score and mod will hold the number for the module with the highest score
+  int max = scores[0];
+  int mod = 0;
+  for(int i = 1; i < 16; i++) {
+    if(scores[i] > max) {
+      max = scores[i];
+      
+      }
+  for(int i = 0; i < 16; i++) {
+    if (scores[i] == max) {
+      mod = i;
+    }
+  }
+    
+  }
+  return mod + 1;
+}
+
+
+//find the lowest score
+template <class customType>
+customType lowScore(customType scores[]) {
+  
+  //min will hold the lowest score
+  int min = scores[0];
+  int mod = 0;
+  for(int i = 1; i < 16; i++) {
+    if(scores[i] < min) {
+      min = scores[i];
+      
+      }
+  for(int i = 0; i < 16; i++) {
+    if (scores[i] == min) {
+      mod = i;
+    }
+  }
+    
+  }
+  return mod + 1;
+  
+
+}
+
+//function to find average score
+float getAvg(float scores[15]) {
+  
+  //sum will hold the total value for all scores
+  float sum = 0;
+  for(int i = 0; i < 16; i++) {
+    sum += scores[i];
+  }
+  float avg = sum /16;
+  return avg;
+}
+
+//function to print out a summary of all scores.
+void quizSummary(float scores[15]) {
+  for(int i = 0; i < 16; i++) {
+    cout<<"Module "<<i+1<<" score: "<<scores[i]<<endl;
+  }
+}
+
+int main() {
+  //initialize the array for 16 quiz scores
+  float scores[15];
+  
+  //call function to get scores from user
+  getData(scores);
+
+  //print highest score
+  cout<<"The highest score was in module "<<highScore(scores)<<endl;
+
+//print lowest score
+  cout<<"The lowest score was in module "<<lowScore(scores)<<endl;
+
+//print average score
+  cout<<"The average score for this student is: "<<getAvg(scores)<<endl;
+
+//print summary of all quizzes
+  quizSummary(scores);
+  
+
+  
+}
